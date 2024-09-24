@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress Vulnerability Scanner</title>
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>WordPress Vulnerability Scanner</h1>
+        <form method="POST" action="/">
+            <input type="text" name="url" placeholder="Enter URL to scan" required>
+            <button type="submit">Scan</button>
+        </form>
+
+        {% if results %}
+        <div class="results">
+            <h2>Scan Results for {{ url }}</h2>
+            <ul>
+                <li>WordPress Version: {{ results['wp_version'] }}</li>
+                <li>Core Version: {{ results['core_version'] }}</li>
+                <li>Theme Vulnerabilities: {{ results['theme_vulnerabilities'] }}</li>
+                <li>Interesting Headers: {{ results['headers'] }}</li>
+                <li>WP-Cron Status: {{ results['wp_cron_status'] }}</li>
+                <li>XML-RPC Status: {{ results['xml_rpc_status'] }}</li>
+                <li>User Enumeration: {{ results['user_enum_status'] }}</li>
+                <li>Config Backup Status: {{ results['config_backup_status'] }}</li>
+                <li>TimThumb Status: {{ results['timthumbs_status'] }}</li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
